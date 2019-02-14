@@ -1,0 +1,13 @@
+sudo: false
+language: python
+python:
+    - "3.6"
+install:
+    - pip install -U pip
+    - pip install -r requirements.txt codecov flake8 sphinx tox-travis manage
+script:
+    - flake8 .
+    - make test-docstrings
+    - cp robottelo.properties.sample robottelo.properties
+    - make docs
+    - tox
